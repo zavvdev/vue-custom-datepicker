@@ -1,0 +1,174 @@
+.root {
+  position: relative;
+  font-family: sans-serif;
+}
+
+/* TRIGGER */
+
+.trigger {
+  padding: 0 !important;
+  border: none;
+  font-size: 14px;
+  color: #0472b3;
+  border-bottom: 1px dotted #a3bccc !important;
+  background: none;
+  font-weight: normal;
+  padding-bottom: 5px;
+  min-height: 28px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.trigger.fullWidth {
+  width: 100%;
+}
+
+/* PICKER */
+
+.picker {
+  position: absolute;
+  top: 135%;
+  left: 0;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Head */
+
+.picker-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: sans-serif;
+  color: #7c7c7c;
+}
+
+.picker-head button {
+  background: none;
+  background-color: #e3e3e3;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  height: 24px;
+  width: 26px;
+  cursor: pointer;
+}
+
+.picker-head button:hover {
+  background-color: #d0d0d0;
+}
+
+/* Content */
+
+.picker-content {
+  width: 300px;
+}
+
+.picker-content-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Days */
+
+.picker-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  font-size: 12px;
+}
+
+.picker-days div {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #828282;
+  border-radius: 2px;
+}
+
+/* Dates */
+
+.picker-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  font-size: 14px;
+}
+
+.picker-dates button {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #343434;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.picker-dates button.disabled {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.25;
+  user-select: none;
+}
+
+.picker-dates button.today {
+  position: relative;
+}
+
+.picker-dates button.today::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background-color: #0472b3;
+  transform: translate(-50%, 0);
+  border-radius: 50%;
+}
+
+.picker-dates button.selected.today::after {
+  background-color: #fff;
+}
+
+.picker-dates button.selected {
+  background-color: #0472b3;
+  color: #fff;
+}
+
+.picker-dates button:hover {
+  background-color: #ededed;
+}
+
+.picker-dates button.selected:hover {
+  background-color: #025e93;
+}
+
+/* MISC */
+
+.picker-placeholder-text {
+  text-align: center;
+  font-size: 13px;
+  color: #c1c1c1;
+  user-select: none;
+  cursor: default;
+}
