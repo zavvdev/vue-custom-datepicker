@@ -16,11 +16,11 @@ export default {
     },
     enabledDates: {
       type: Array,
-      default: () => [],
+      default: null,
     },
     disabledDates: {
       type: Array,
-      default: () => [],
+      default: null,
     },
     format: {
       type: String,
@@ -151,10 +151,15 @@ export default {
       const calendarPageMonth = this.dateService.getDateMonth(
         this.calendarPageValue,
       );
+
+      const isAmongDisabled =
+        Array.isArray(this.disabledDates) && this.disabledDates.includes(date);
+
+      const isNotAmongEnabled =
+        Array.isArray(this.enabledDates) && !this.enabledDates.includes(date);
+
       return (
-        dateMonth !== calendarPageMonth ||
-        this.disabledDates.includes(date) ||
-        (this.enabledDates.length > 0 && !this.enabledDates.includes(date))
+        dateMonth !== calendarPageMonth || isAmongDisabled || isNotAmongEnabled
       );
     },
     isDateSelected(date) {
