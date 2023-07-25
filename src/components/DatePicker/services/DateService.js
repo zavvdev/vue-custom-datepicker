@@ -48,6 +48,13 @@ export class DateService {
   }
 
   /**
+   * @returns {number}
+   */
+  getCurrentYear() {
+    return moment().year();
+  }
+
+  /**
    * @param {string} date
    * @returns {string}
    */
@@ -78,5 +85,34 @@ export class DateService {
    */
   getDateMonth(date) {
     return moment.utc(date, this._f).month() + 1;
+  }
+
+  /**
+   * @param {string} date
+   * @param {number} monthNumber
+   * @returns {string}
+   */
+  setDateMonth(date, monthNumber) {
+    return moment
+      .utc(date, this._f)
+      .set("month", monthNumber - 1)
+      .format(this._f);
+  }
+
+  /**
+   * @param {string} date
+   * @returns {number}
+   */
+  getDateYear(date) {
+    return moment.utc(date, this._f).year();
+  }
+
+  /**
+   * @param {string} date
+   * @param {number} year
+   * @returns {string}
+   */
+  setDateYear(date, year) {
+    return moment.utc(date, this._f).set("year", year).format(this._f);
   }
 }

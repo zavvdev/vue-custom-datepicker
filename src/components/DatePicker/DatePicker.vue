@@ -13,7 +13,32 @@
         <button v-on:click="onPrevMonth" :disabled="this.isLoading">
           {{ '<' }}
         </button>
-        {{ previewPickerHeaderDate }}
+        <div class="picker-head-date">
+          <select
+            :value="selectedMonth"
+            v-on:change="e => onChangeCalendarMonth(e.target.value)"
+          >
+            <option
+              v-for="month in months"
+              :key="month.label"
+              :value="month.value"
+            >
+              {{ month.label }}
+            </option>
+          </select>
+          <select
+            :value="selectedYear"
+            v-on:change="e => onChangeCalendarYear(e.target.value)"
+          >
+            <option
+              v-for="year in years"
+              :key="year"
+              :value="year"
+            >
+              {{ year }}
+            </option>
+          </select>
+        </div>
         <button v-on:click="onNextMonth" :disabled="this.isLoading">
           {{ '>' }}
         </button>
@@ -26,7 +51,7 @@
         </div>
         <div v-else class="picker-content-wrap">
           <div class="picker-days">
-            <div v-for="day in daysOfWeek">
+            <div v-for="day in days">
               {{ day }}
             </div>
           </div>

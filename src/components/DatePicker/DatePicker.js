@@ -1,4 +1,11 @@
-import { DATE_FORMATS, DAYS, EVENTS } from "./DatePicker.config";
+import { range } from "../../utils/general";
+import {
+  DATE_FORMATS,
+  DAYS,
+  EVENTS,
+  MONTHS,
+  YEARS_LIST_THRESHOLD,
+} from "./DatePicker.config";
 import { DateService } from "./services/DateService";
 
 export default {
@@ -22,14 +29,6 @@ export default {
     previewFormat: {
       type: String,
       default: DATE_FORMATS.previewValue,
-    },
-    previewPickerHeaderDateFormat: {
-      type: String,
-      default: DATE_FORMATS.previewPickerHeader,
-    },
-    previewPickerDateFormat: {
-      type: String,
-      default: DATE_FORMATS.previewPickerDate,
     },
     placeholder: {
       type: String,
@@ -60,17 +59,28 @@ export default {
       }
       return this.placeholder;
     },
-    previewPickerHeaderDate() {
-      return this.dateService.format(
-        this.calendarPageValue,
-        this.previewPickerHeaderDateFormat,
-      );
-    },
-    daysOfWeek() {
+    days() {
       return DAYS;
+    },
+    months() {
+      return MONTHS;
+    },
+    years() {
+      const currentYear = this.dateService.getCurrentYear();
+      return range(
+        currentYear - YEARS_LIST_THRESHOLD,
+        currentYear + YEARS_LIST_THRESHOLD,
+        1,
+      );
     },
     currentPageDates() {
       return this.dateService.getCalendarPageDates(this.calendarPageValue);
+    },
+    selectedMonth() {
+      return this.dateService.getDateMonth(this.calendarPageValue);
+    },
+    selectedYear() {
+      return this.dateService.getDateYear(this.calendarPageValue);
     },
   },
 
@@ -116,9 +126,21 @@ export default {
       }
       this.$emit(EVENTS.onChange, nextValue);
     },
+    onChangeCalendarMonth(nextMonthNumber) {
+      this.calendarPageValue = this.dateService.setDateMonth(
+        this.calendarPageValue,
+        nextMonthNumber,
+      );
+    },
+    onChangeCalendarYear(nextYear) {
+      this.calendarPageValue = this.dateService.setDateYear(
+        this.calendarPageValue,
+        nextYear,
+      );
+    },
 
     getCalendarDatePreview(date) {
-      return this.dateService.format(date, this.previewPickerDateFormat);
+      return this.dateService.format(date, DATE_FORMATS.previewPickerDate);
     },
     getToday() {
       return this.dateService.getToday();

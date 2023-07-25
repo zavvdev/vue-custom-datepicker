@@ -72,6 +72,20 @@
   background-color: #d0d0d0;
 }
 
+.picker-head-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-left: 5px;
+}
+
+.picker-head-date select {
+  border: none;
+  background: none;
+  outline: none;
+}
+
 /* Content */
 
 .picker-content {
